@@ -1,0 +1,8 @@
+{
+  "idf.customExtraVars": {
+    "OPENOCD_SCRIPTS": "C:\\Espressif\\tools\\openocd-esp32\\v0.12.0-esp32-20260304\\openocd-esp32\\share\\openocd\\scripts",
+    "ESP_ROM_ELF_DIR": "C:\\Espressif\\tools\\esp-rom-elfs\\20241011"
+  },
+  "idf.currentSetup": "D:\\esp\\5.44\\.espressif\\v5.4.4\\esp-idf",
+  "idf.portWin": "COM5"
+}
