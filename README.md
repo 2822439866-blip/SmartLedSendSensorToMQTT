@@ -154,9 +154,9 @@
 	架构重构与代码优化：
 
 		### Application类与taskManager类解耦与事件驱动：
-				在taskManager类中强引用了Application.h,包含了整个系统，导致taskManager繁重，所以我在未来可能会使用esp_event 自定义事件循环，解耦Application类与taskManager类
+*				在taskManager类中强引用了Application.h,包含了整个系统，导致taskManager繁重，所以我在未来可能会使用esp_event 自定义事件循环，解耦Application类与taskManager类
 
-		MQTT数据流调度模型重构：
+*		MQTT数据流调度模型重构：
 				当下是sensorlist_task中光感数据发送到queue，在MQTTpublshTask异步接收，若系统低功耗模式下，存在生产者与消费者之间的速率不匹配问题，目前仅仅是清除过去数据，虽然保证数据时效性，但数据处理与业务逻辑存在部分耦合。所以我在未来可能会使用环形缓冲区或专用的覆盖式队列将“丢弃旧数据、只发最新数据”的策略从业务逻辑中解耦出来，让Application 的业务层更专注于传感器数据的处理，提升架构的可测试性与代码复用度。	
 		
 		参数动态配置化：目前在配置Wi-Fi，MQTT Broker 地址，Topic 节点采用硬编码，写死了，未来可能会采用通过公共接口，或者是引入微信小程序配网或基于NVS的Web Server配网页面，提高设备灵活性，实现真正通用落地能力
