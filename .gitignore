@@ -29,3 +29,7 @@ compile_commands.json
 # IDE
 .vscode/
 .idea/
+
+//可视化
+data.py
+sensor_data.csv
