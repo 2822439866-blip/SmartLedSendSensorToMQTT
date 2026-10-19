@@ -12,8 +12,13 @@
 class taskManager{
     public:
         taskManager(Application* app);
-         void task_create();
+        BaseType_t task_create();
         Application* app; 
+        TaskHandle_t sensorlist_task_Handle = nullptr;
+        TaskHandle_t led_breath_task_Handle = nullptr;
+        TaskHandle_t MPU6050_out_put_Handle= nullptr;
+        TaskHandle_t short_button_task_Handle = nullptr;
+        TaskHandle_t led_control_task_Handle = nullptr;
         TaskHandle_t mqtt_publish_task_handl = nullptr;
         TaskHandle_t mqtt_low_power_publish_task_handl = nullptr;
     private:

@@ -1,23 +1,24 @@
 #include "freertos/FreeRTOS.h"
-
 #include<stdbool.h>
+#include <string.h>
 #include "Application.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#include "esp_err.h"
+#include "app_config.h"
 //系统状态事件组
 #define SYS_STATE_BIT_WIFI_CONNECTED BIT0
 #define SYS_STATE_BIT_MQTT_CONNECTED BIT1
 #define SYS_STATE_BIT_MOVING BIT2
 #define SYS_STATE_BIT_ALL_NORMAL (SYS_STATE_BIT_WIFI_CONNECTED | SYS_STATE_BIT_MQTT_CONNECTED | SYS_STATE_BIT_MOVING)
-
 const char* Application::isr_tag = nullptr;
 bool Application::last_state;
 bool Application::current_state;
 SystemState Application::sys_state;
+
 Application::Application()
 {
     breath_y_led = new led_breath(GPIO_NUM_4, "黄色LED呼吸灯",LEDC_LOW_SPEED_MODE, LEDC_CHANNEL_0);
-    breath_y_led->tamer_init();
     v = new Sensor(32, "电压传感器");
     bluleled = new SmartLed(GPIO_NUM_2, "blueLED", 500, 500);
     fastbutton = new Button(GPIO_NUM_16, "Button");
@@ -32,8 +33,57 @@ Application::Application()
     last_state = false;
     current_state = false;
     sys_state = Normal;
-    sensorQueue = xQueueCreate(10,sizeof(char)*50);
+}
+esp_err_t Application::init()
+{
+    //系统状态组初始化
+    sys_state_group = xEventGroupCreate();
+    if(sys_state_group == nullptr){ESP_LOGE("Application::init","系统状态组创建失败"); return ESP_ERR_NO_MEM;}else{
+        xEventGroupClearBits(sys_state_group, SYS_STATE_BIT_WIFI_CONNECTED | SYS_STATE_BIT_MQTT_CONNECTED);
+    }
+
+    //创建sensor和mqtt的通信消息队列   
+    sensorQueue = xQueueCreate(1,sizeof(char)*50);
+    if(sensorQueue == nullptr){ESP_LOGE("Application::init","传感器queue消息队列创建失败");return ESP_ERR_NO_MEM;}
+
+    //安装中断服务
+    esp_err_t gpio_install_isr_state = gpio_install_isr_service(0);
+    if(gpio_install_isr_state != ESP_OK && gpio_install_isr_state != ESP_ERR_INVALID_STATE){
+        ESP_LOGE("Application::init","中断服务安装失败 原因： %s",esp_err_to_name(gpio_install_isr_state));
+        return gpio_install_isr_state;
+    }
+
+    //二值信号量
+    this->button_semaphore = xSemaphoreCreateBinary();
+    if(button_semaphore == NULL){ESP_LOGE("Application::init","按钮二值信号量创建失败");return ESP_ERR_NO_MEM;}else{
+        esp_err_t gpio_isr_handler_add_state = gpio_isr_handler_add(GPIO_NUM_16,&Application::short_button_press_event,this);
+        if(gpio_isr_handler_add_state != ESP_OK ){ESP_LOGE("Application::init",
+                                                        "为对应的 GPIO 引脚添加 ISR 处理器失败 原因： %s",
+                                                        esp_err_to_name(gpio_isr_handler_add_state));
+            return gpio_isr_handler_add_state;
+        }
+    }
+
+    if(this->v->getsensorListAve() < 900){this->bluleled->blink();}
+    //初始化LEDC通道配置
+    esp_err_t breath_y_led_tamer_init_state = breath_y_led->tamer_init();
+    if(breath_y_led_tamer_init_state != ESP_OK){
+        ESP_LOGE("Application::init","breath_y_led->tamer_init() 初始化失败 原因： %s",esp_err_to_name(breath_y_led_tamer_init_state));
+        return breath_y_led_tamer_init_state;
+    }
+
+    //开启网络服务
+    wifi = new wifiManager(sys_state_group);
+    mqtt = new mqttManager(sys_state_group);
+    mpu6050 = new MPU6050(sys_state_group);
+    wifi->connect(APP_WIFI_SSID,APP_WIFI_PASSWORD);
+    vTaskDelay(pdMS_TO_TICKS(1000)); // 等待 wifi 连接稳定
+    ESP_LOGI(mqttManager::mqtt_tag, "正在连接 MQTT 服务器...");
+    mqtt->mqtt_app_start();
+
+
     
+    return ESP_OK;
 }
 void Application::Auto_led()
 {   
@@ -44,10 +94,12 @@ void Application::Auto_led()
     if(this->last_state == true && this->current_state == false){
         //从亮变暗了
         this->bluleled->blink();
+        ESP_LOGE("led","开灯");
     }
     if(this->last_state == false && this->current_state == true){
         //从暗变亮了
         this->bluleled->close();
+        ESP_LOGE("led","关灯");
     }
     this->last_state = this->current_state;
 }
@@ -134,33 +186,42 @@ void Application::sensorlist_task_accomplish()
     for(int i=0;i<=9;i++){
             writeVal += this->v->readValue();
     }
-    this->v->sensorList[this->count] = writeVal/10;
+    writeVal = writeVal/10;
+    this->v->sensorList[this->count] = writeVal;
     this->count++;
     this->count = (this->count)%10;
-        
 
     //发消息任务
     int light = this->v->getsensorListAve();
+
     char payload[50];
-    sprintf(payload, "{\"light_value\": %d}", light);
-    xQueueSend(sensorQueue,payload,pdMS_TO_TICKS(0));
-    
-    
+    int value = snprintf(payload,sizeof(payload),"{\"light_value\": %d}", light);
+    if(0 < value && value < 50){//防止缓冲区溢出
+        xQueueOverwrite(sensorQueue,payload);
+    }else if (value >= sizeof(payload)){
+        ESP_LOGE(this->mqtt->mqtt_tag, "payload 缓冲区溢出 格式化失败 被截断");
+    }else {
+        ESP_LOGE(this->mqtt->mqtt_tag, "payload 格式化失败");
+    }       
+
+     
 }
 void Application::mqtt_publish_task_logic()
 {   
     //接收xQueue
     char payload[50];
-    if(xQueueReceive(sensorQueue,payload,pdMS_TO_TICKS(0)) == pdTRUE){
+    if(xQueueReceive(sensorQueue,payload,pdMS_TO_TICKS(0)) == pdTRUE){//先判断列队是否为空
+        
         if((this->get_sys_state_group() & SYS_STATE_BIT_MQTT_CONNECTED) == SYS_STATE_BIT_MQTT_CONNECTED){
-            this->mqtt->publish("/esp32/cym/sensor/light", payload);
-             ESP_LOGI(this->mqtt->mqtt_tag, "发布 MQTT 消息: %s", payload);
+            this->mqtt->publish(TMQTT_PUB_TOPIC0, payload);
+            ESP_LOGI(this->mqtt->mqtt_tag, "发布 MQTT 消息: %s", payload);
         }else{
-            ESP_LOGW(this->mqtt->mqtt_tag, "MQTT 客户端未准备好，无法发布消息 可能是 wifi或mqtt没链接");
+            ESP_LOGW(this->mqtt->mqtt_tag, "MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接");
             ESP_LOGI(this->mqtt->mqtt_tag, "当前信息: %s", payload);
         }
+    }else{
+        ESP_LOGW(this->mqtt->mqtt_tag, "当前sensorQueue无数据 不可发送mqtt消息");
     }
-    
 }
 
 
@@ -178,30 +239,7 @@ void IRAM_ATTR Application::short_button_press_event(void* arg)
     app->last_time = curr_time;
 }
 
-void Application::init()
-{
-    //系统状态组
-    sys_state_group = xEventGroupCreate();
-    xEventGroupClearBits(sys_state_group, SYS_STATE_BIT_WIFI_CONNECTED | SYS_STATE_BIT_MQTT_CONNECTED);
 
-    //安装中断服务
-    gpio_install_isr_service(0);;
-    //二值信号量
-    this->button_semaphore = xSemaphoreCreateBinary();
-    gpio_isr_handler_add(GPIO_NUM_16,&Application::short_button_press_event,this);
-
-
-    wifi = new wifiManager(sys_state_group);
-    mqtt = new mqttManager(sys_state_group);
-    mpu6050 = new MPU6050(sys_state_group);
-    wifi->connect("Katatumuri","000999888");
-    vTaskDelay(pdMS_TO_TICKS(1000)); // 等待 wifi 连接稳定
-    ESP_LOGI(mqttManager::mqtt_tag, "正在连接 MQTT 服务器...");
-    mqtt->mqtt_app_start();
-
-    if(this->v->getsensorListAve() > 900){this->bluleled->blink();}
-
-}
 
 EventBits_t Application::get_sys_state_group()
 {   

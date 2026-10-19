@@ -41,14 +41,14 @@ class Application{
         led_breath* breath_y_led;
         mqttManager* mqtt;
         wifiManager* wifi;
-        MPU6050* mpu6050;
+        MPU6050 *mpu6050;
 
         EventGroupHandle_t sys_state_group;
         SemaphoreHandle_t button_semaphore;//中断
 
         TaskHandle_t publsh_handl = nullptr;
         TaskHandle_t low_power_publsh_hanel = nullptr;
-        void init();
+        esp_err_t  init();
         SystemState get_sys_state();
 
         //业务判断逻辑&控制底层操作
@@ -56,7 +56,7 @@ class Application{
         void breath_led_accomplish();
         void sensorlist_task_accomplish();
         void mqtt_publish_task_logic();
-        
+        QueueHandle_t sensorQueue; 
     private:
         Application();
         EventBits_t get_sys_state_group();
@@ -69,7 +69,6 @@ class Application{
         static const char* isr_tag;        
         static bool last_state;
         static bool current_state;
-        QueueHandle_t sensorQueue; 
         int duty = 0;
         int fade = 20; 
         int sensor_list_count = 0;

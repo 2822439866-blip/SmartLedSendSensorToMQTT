@@ -8,7 +8,7 @@ class led_breath{
         const char* name;
     public:
         led_breath(int p,const char* n,ledc_mode_t LEDC_MODE,ledc_channel_t LEDC_CHANNEL);
-        void tamer_init();
+        esp_err_t tamer_init();
         void set_safe_duty(uint32_t duty);
         void wifi_err_blink();
         void mqtt_err_blink();

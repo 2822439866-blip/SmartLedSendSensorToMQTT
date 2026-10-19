@@ -1,0 +1,12 @@
+#pragma once
+
+//wifi:
+#define APP_WIFI_SSID "you wifi id"
+#define APP_WIFI_PASSWORD "wifi password"
+
+//mqtt:
+#define BOKER_ADDRESS_URI "mqtt://broker.emqx.io"
+
+#define TMQTT_PUB_TOPIC0 "/demo/text"
+#define TMQTT_PUB_TOPIC1 NULL
+#define TMQTT_PUB_TOPIC NULL

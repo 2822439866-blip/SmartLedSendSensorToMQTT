@@ -1,10 +1,8 @@
-
+#include "FreeRTOSConfig.h"
 #include "taskManager.h"
 #include "Application.h"
 #include "esp_log.h"
 #include "esp_timer.h"
-
-
 
 
 void taskManager::led_breath_task(void *pvParameter){
@@ -80,18 +78,28 @@ taskManager::taskManager(Application* application)
     this->app = application;
     
 }
-void taskManager::task_create()
-{
-    xTaskCreate(sensorlist_task, "Sensor_Task", 4096, this, 5, NULL);
-    xTaskCreate(led_control_task, "led_control_task", 4096, this, 5, NULL);
-    xTaskCreate(mqtt_publish_task, "MQTT_Queue_Task", 4096, this, 5, &mqtt_publish_task_handl);
-    xTaskCreate(short_button_task, "short_button_task", 4096, this, 5, NULL);
-    xTaskCreate(led_breath_task, "led_breath_task", 4096, this, 4, NULL);
-    xTaskCreate(MPU6050_out_put, "MPU6050_out_put", 4096, this, 4, NULL);
+BaseType_t taskManager::task_create()
+{   
 
-    xTaskCreate(mqtt_publish_task_low_power, "mqtt_publish_task_low_power", 4096, this, 5, &mqtt_low_power_publish_task_handl);
-    vTaskSuspend(mqtt_low_power_publish_task_handl);
-    //任务创建完之后 给application传入任务句柄 在application中通过句柄控制publsh模式
-    app->publsh_handl = mqtt_publish_task_handl;
-    app->low_power_publsh_hanel = mqtt_low_power_publish_task_handl;
+
+    if(app->sensorQueue != NULL){
+        if(xTaskCreate(sensorlist_task, "Sensor_Task", 4096, this, 5, &sensorlist_task_Handle) != pdPASS ){ESP_LOGE("MAIN_task_create","sensorlist_task 创建失败"); return pdFAIL;}
+        if(xTaskCreate(mqtt_publish_task, "MQTT_Queue_Task", 4096, this, 5, &mqtt_publish_task_handl) != pdPASS){ESP_LOGE("MAIN_task_create","mqtt_publish_task 创建失败");return pdFAIL;}
+        if(xTaskCreate(mqtt_publish_task_low_power, "mqtt_publish_task_low_power", 4096, this, 5, &mqtt_low_power_publish_task_handl) != pdPASS){ESP_LOGE("MAIN_task_create","mqtt_publish_task_low_power 创建失败");return pdFAIL;}
+        vTaskSuspend(mqtt_low_power_publish_task_handl);
+        //任务创建完之后 给application传入任务句柄 在application中通过句柄控制publsh模式
+        app->publsh_handl = mqtt_publish_task_handl;
+        app->low_power_publsh_hanel = mqtt_low_power_publish_task_handl;
+
+        if(xTaskCreate(led_breath_task, "led_breath_task", 4096, this, 4, &led_breath_task_Handle) != pdPASS ){ ESP_LOGE("MAIN_task_create","led_breath_task 创建失败");return pdFAIL;}
+        if(xTaskCreate(MPU6050_out_put, "MPU6050_out_put", 4096, this, 4, &MPU6050_out_put_Handle) != pdPASS ){ ESP_LOGE("MAIN_task_create","MPU6050_out_put 创建失败");return pdFAIL;}
+    }else{
+        ESP_LOGE("taskManager::task_create", "在创建任务阶段 消息队列意外为空 无法创建任务");
+        return pdFAIL;
+    }
+    if(xTaskCreate(short_button_task, "short_button_task", 4096, this, 5, &short_button_task_Handle) != pdPASS ){ ESP_LOGE("MAIN_task_create","short_button_task 创建失败");return pdFAIL;}
+    if(xTaskCreate(led_control_task, "led_control_task", 4096, this, 5, &led_control_task_Handle) != pdPASS ){ ESP_LOGE("MAIN_task_create","led_control_task 创建失败");return pdFAIL;}
+
+
+    return pdPASS;
 }

@@ -2,7 +2,7 @@
 #include "esp_log.h"
 #include "freertos/event_groups.h"
 #include "mqtt_client.h"
-
+#include "app_config.h"
 #define SYS_STATE_BIT_WIFI_CONNECTED BIT0
 #define SYS_STATE_BIT_MQTT_CONNECTED BIT1
 #define SYS_STATE_BIT_MOVING BIT2
@@ -64,16 +64,19 @@ mqttManager::mqttManager(EventGroupHandle_t sys_state_group)
 {   
     mqttManager::sys_state_group= sys_state_group;
     ESP_LOGI(mqtt_tag, "mqtt准备中");
-    esp_log_level_set("mqtt_client", ESP_LOG_VERBOSE);
-    esp_log_level_set("mqtt_example", ESP_LOG_VERBOSE);
-    esp_log_level_set("transport_base", ESP_LOG_VERBOSE);
-    esp_log_level_set("esp-tls", ESP_LOG_VERBOSE);
-    esp_log_level_set("transport", ESP_LOG_VERBOSE);
-    esp_log_level_set("outbox", ESP_LOG_VERBOSE);
+    esp_log_level_set("mqtt_client", ESP_LOG_INFO);
+    esp_log_level_set("mqtt_example", ESP_LOG_INFO);
+    esp_log_level_set("transport_base", ESP_LOG_INFO);
+    esp_log_level_set("esp-tls", ESP_LOG_INFO);
+    esp_log_level_set("transport", ESP_LOG_INFO);
+    esp_log_level_set("outbox", ESP_LOG_INFO);
 }
 void mqttManager::publish(const char *topic, const char *payload)
 {
-    esp_mqtt_client_publish(client, topic, payload, 0, 0, 0);
+    int mes_id = esp_mqtt_client_publish(client, topic, payload, 0, 0, 0);
+    if(mes_id == -2){
+        ESP_LOGI(mqtt_tag, "mqtt 发送失败 本地发件箱已满");
+    }
 }
 void mqttManager::subscribe(const char *topic)
 {
@@ -82,7 +85,7 @@ void mqttManager::subscribe(const char *topic)
 void mqttManager::mqtt_app_start()
 {  
     esp_mqtt_client_config_t mqtt_cfg = {};
-    mqtt_cfg.broker.address.uri = "mqtt://broker.emqx.io";
+    mqtt_cfg.broker.address.uri = BOKER_ADDRESS_URI;
     client = esp_mqtt_client_init(&mqtt_cfg);//在这个函数里面给私有变量client赋值了，必须调用这个函数来确保client被正确初始化
     esp_mqtt_client_register_event(client, (esp_mqtt_event_id_t)ESP_EVENT_ANY_ID, mqtt_event_handler, this);
     esp_mqtt_client_start(client);

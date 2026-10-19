@@ -1,5 +1,6 @@
 #include"led_breath.h"
 #include "freertos/FreeRTOS.h"
+#include "esp_log.h"
 #include "driver/ledc.h"
 led_breath::led_breath(int p,const char* n,ledc_mode_t LEDC_MODE,ledc_channel_t LEDC_CHANNEL){
     pin = (gpio_num_t)p;
@@ -7,7 +8,7 @@ led_breath::led_breath(int p,const char* n,ledc_mode_t LEDC_MODE,ledc_channel_t 
     this->LEDC_MODE = LEDC_MODE;
     this->LEDC_CHANNEL = LEDC_CHANNEL;//类定义的参数 传入的参数必须显示赋值！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
 }
-void led_breath::tamer_init(){
+esp_err_t led_breath::tamer_init(){
     //定时器配置
     ledc_timer_config_t ledc_timer = {};
     ledc_timer.speed_mode = LEDC_MODE;//定时器使用低速模式 省电
@@ -15,7 +16,10 @@ void led_breath::tamer_init(){
     ledc_timer.timer_num = LEDC_TIMER_0;//使用定时器0 （啥都可以）要和PWM通道配置的定时器编号一致    
     ledc_timer.freq_hz = 5000;//频率                     
     ledc_timer.clk_cfg = LEDC_AUTO_CLK; //LEDC 定时器的时钟源选择 决定 PWM 频率从哪个时钟分频而来                  
-    ledc_timer_config(&ledc_timer);       
+    esp_err_t ledc_timer_config_state = ledc_timer_config(&ledc_timer);
+    if(ledc_timer_config_state != ESP_OK){
+        return ledc_timer_config_state;
+    }       
     
     // 通道配置//因为我们之前配置了定时器 选择了LEDC_TIMER_0 所以要再pwm通道应用他们才能绑定在一起
     ledc_channel_config_t ledc_channel = {};
@@ -25,7 +29,11 @@ void led_breath::tamer_init(){
     ledc_channel.intr_type = LEDC_INTR_DISABLE;//不使用中断
     ledc_channel.timer_sel = LEDC_TIMER_0;//应用之前配置的定时器0
     ledc_channel.duty = 0;//初始占空比为0（LED熄灭）
-    ledc_channel_config(&ledc_channel);
+    esp_err_t ledc_channel_config_state = ledc_channel_config(&ledc_channel);
+    if(ledc_channel_config_state != ESP_OK){
+        return ledc_channel_config_state;
+    }
+    return ESP_OK;
 }
 void led_breath::wifi_err_blink(){//闪一下 快速闪两下
     this->set_safe_duty(4095);
