@@ -1,4 +1,4 @@
-**/config.h
+**/app_config.h
 config.local.h
 secrets.h
 
