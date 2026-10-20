@@ -5,7 +5,6 @@
 #include "esp_wifi.h"
 #include "esp_event.h"
 #include "nvs_flash.h"
-// WiFi 事件处理函数，负责监听 WiFi 状态的变化，并通过事件组通知主程序
 
 // 两个信号灯标志：成功连上给第 0 位（BIT0），彻底失败给第 1 位（BIT1）
 #define WIFI_CONNECTED_BIT BIT0
@@ -18,42 +17,38 @@
 #define SYS_STATE_BIT_ALL_NORMAL (SYS_STATE_BIT_WIFI_CONNECTED | SYS_STATE_BIT_MQTT_CONNECTED | SYS_STATE_BIT_MOVING)
 
 const char* wifiManager::wifi_tag = "wifi";
+// WiFi事件回调函数，负责监听 WiFi 状态的变化，并通过事件组通知主程序
 void wifiManager::eventHandler(void *arg, esp_event_base_t event_base, int32_t event_id, void *event_data)
 {
     wifiManager* wifi = (wifiManager*)arg;
 
-    //硬件准备好了
-    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {
-        esp_wifi_connect(); // 让天线真正去和路由器对暗号
+    if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {//硬件准备好了
+        esp_wifi_connect(); 
     }else if(event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED){
         wifi_event_sta_disconnected_t* event = (wifi_event_sta_disconnected_t*) event_data;
         ESP_LOGE(wifi_tag, "⚠️ diss dissconnected: %d", event->reason);
         // 更新系统状态 呼吸灯会感知到这个状态并改变自己的行为
         xEventGroupClearBits(wifi->sys_state_group, SYS_STATE_BIT_WIFI_CONNECTED); // 更新系统状态
-        //esp_wifi_connect();//不管超过多少次失败 我们都让他重新连接
         if (wifi->retry_num < MAX_RETRY) {
             esp_wifi_connect(); // 没超过 5 次，继续尝试重连
             wifi->retry_num++;
             ESP_LOGW(wifi_tag, "断开或未连上，正在进行第 %d 次自动重连...",wifi->retry_num);
         } else {
-            // 超过 5 次都连不上，彻底放弃，给正在死等的主程序点亮【失败红灯】（BIT1）
+            // 超过 5 次都连不上，彻底放弃，通知正在死等的主程序    WIFI_FAIL_BIT
             xEventGroupSetBits(wifi->wifi_event_group, WIFI_FAIL_BIT);//点灯 通知在connect函数死等的程序
         }
-    } 
- 
-    else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
+    }else if(event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP) {
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
-        // 打印出让人兴奋的绿色 IP 日志
         ESP_LOGI(wifi_tag, "IP : " IPSTR, IP2STR(&event->ip_info.ip));
         xEventGroupSetBits(wifi->sys_state_group,SYS_STATE_BIT_WIFI_CONNECTED); // 更新系统状态
         wifi->retry_num = 0; // 重置计数器
-        // 给正在死等的主程序点亮【成功绿灯】（BIT0），主程序瞬间苏醒！
+        // 通知正在阻塞的主程序 WIFI_CONNECTED_BIT
         xEventGroupSetBits(wifi->wifi_event_group, WIFI_CONNECTED_BIT);
     }
 }
 wifiManager::wifiManager(EventGroupHandle_t sys_state_group)
 {    
-    wifiManager::sys_state_group = sys_state_group;//这是系统的状态
+    wifiManager::sys_state_group = sys_state_group;
    //WiFi硬件每次启动都要去Flash读射频参数 必须先初始化 NVS
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {

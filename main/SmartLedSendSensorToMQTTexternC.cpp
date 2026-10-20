@@ -11,7 +11,6 @@
 #include "Application.h"
 #include "taskManager.h"
 
-//static const char* led_tag = "LED_Class";
 Application* app = nullptr;
 taskManager* my_task = nullptr;
 
@@ -35,7 +34,6 @@ extern "C" void app_main(void)
             vTaskDelay(pdMS_TO_TICKS(1000*10));
         }
     }
-
     vTaskDelay(pdMS_TO_TICKS(1000*90));
     ESP_LOGW("MAIN_task_create Mamery ","sensorlist_task high lavel %d",uxTaskGetStackHighWaterMark(my_task->sensorlist_task_Handle));
     ESP_LOGW("MAIN_task_create Mamery ","led_breath_task high lavel %d",uxTaskGetStackHighWaterMark(my_task->led_breath_task_Handle));
@@ -44,6 +42,4 @@ extern "C" void app_main(void)
     ESP_LOGW("MAIN_task_create Mamery ","led_control_task high lavel %d",uxTaskGetStackHighWaterMark(my_task->led_control_task_Handle));
     ESP_LOGW("MAIN_task_create Mamery ","mqtt_publish_task high lavel %d",uxTaskGetStackHighWaterMark(my_task->mqtt_publish_task_handl));
     ESP_LOGW("MAIN_task_create Mamery ","mqtt_low_power_publish_task high lavel %d",uxTaskGetStackHighWaterMark(my_task->mqtt_low_power_publish_task_handl));
-
-    
 }

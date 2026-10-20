@@ -25,7 +25,7 @@ MPU6050::MPU6050(EventGroupHandle_t sys_state_group)
 {
     MPU6050::sys_state_group = sys_state_group;
     i2c_master_dev_handle_t dev_handle;
-    // 1. 配置 I2C 总线
+    //配置 I2C 总线
     i2c_master_bus_config_t i2c_mst_config = {};
     i2c_mst_config.clk_source = I2C_CLK_SRC_DEFAULT;//I2C 外设的时钟源选择
     i2c_mst_config.i2c_port = I2C_MASTER_NUM;//指定使用哪一个 I2C 硬件端口
@@ -37,7 +37,7 @@ MPU6050::MPU6050(EventGroupHandle_t sys_state_group)
     i2c_master_bus_handle_t bus_handle;
     ESP_ERROR_CHECK_WITHOUT_ABORT(i2c_new_master_bus(&i2c_mst_config, &bus_handle));
 
-    // 2. 将 MPU6050 挂载到 I2C 总线上
+    //将 MPU6050 挂载到 I2C 总线上
     i2c_device_config_t dev_cfg = {};
     dev_cfg.dev_addr_length = I2C_ADDR_BIT_LEN_7;
     dev_cfg.device_address = MPU6050_DEV_ADDR;
@@ -45,7 +45,7 @@ MPU6050::MPU6050(EventGroupHandle_t sys_state_group)
     
     ESP_ERROR_CHECK_WITHOUT_ABORT(i2c_master_bus_add_device(bus_handle, &dev_cfg, &dev_handle));
 
-    // 3. 唤醒 MPU6050 (默认上电是睡眠模式，往 0x6B 写入 0x00)
+    //唤醒 MPU6050(默认上电是睡眠模式，往 0x6B 写入 0x00)
     uint8_t wake_cmd[2] = {MPU6050_REG_PWR_MGMT_1, 0x00};
     ESP_ERROR_CHECK_WITHOUT_ABORT(i2c_master_transmit(dev_handle, wake_cmd, sizeof(wake_cmd), -1));
     this->dev_handle = dev_handle;
@@ -89,8 +89,8 @@ void MPU6050::put_data_in_datalist()
         this->cont = (this->cont)%10;
 
         //ESP_LOGI(MPU6050_tag, "ACC: X=%d, Y=%d, Z=%d | GYRO: X=%d, Y=%d, Z=%d", 
-                        //this->acc_x[this->cont], this->acc_y[this->cont], this->acc_z[this->cont], 
-                        //this->gyro_x[this->cont], this->gyro_y[this->cont], this->gyro_z[this->cont]);
+        //this->acc_x[this->cont], this->acc_y[this->cont], this->acc_z[this->cont], 
+        //this->gyro_x[this->cont], this->gyro_y[this->cont], this->gyro_z[this->cont]);
     }else{ESP_LOGI(MPU6050_tag,"读取数据错误");}
     
 }
@@ -142,7 +142,7 @@ void MPU6050::calculate_ave_and_s()
     s_gyro_y = sum_gyro_y_s/10.0f;
     s_gyro_z = sum_gyro_z_s/10.0f;
     //ESP_LOGI(MPU6050_tag,"s_ACC: X=%f, Y=%f, Z=%f | s_GYRO: X=%f, Y=%f, Z=%f",
-                       // this->s_acc_x,this->s_acc_y,this->s_acc_z,this->s_gyro_x,this->s_gyro_y,this->s_gyro_z);
+                // this->s_acc_x,this->s_acc_y,this->s_acc_z,this->s_gyro_x,this->s_gyro_y,this->s_gyro_z);
 }
 
 

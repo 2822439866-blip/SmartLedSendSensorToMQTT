@@ -16,9 +16,6 @@ void mqttManager::mqtt_event_handler(void *handler_args, esp_event_base_t base, 
     mqttManager* mqtt= (mqttManager*)handler_args;
     ESP_LOGD(mqtt->mqtt_tag, "Event dispatched from event loop base=%s, event_id=%" PRIi32 "", base, event_id);
 
-    //esp_mqtt_event_handle_t* event = event_data;//这行代码是 esp_mqtt_event_handle_t event = event_data;。这里的 event_data 是系统传过来的万能指针 void*。在 C 语言里，void* 可以随便变成任何指针；但在 C++ 里，必须显式强转。wifiManager* myWifi = (wifiManager*)arg;
-
-
     int msg_id = event->msg_id;
     switch ((esp_mqtt_event_id_t)event_id){
     case MQTT_EVENT_CONNECTED:

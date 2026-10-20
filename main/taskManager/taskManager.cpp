@@ -6,7 +6,6 @@
 
 
 void taskManager::led_breath_task(void *pvParameter){
-    //sys_state_t last_sys_state = SYS_STATE_NORMAL;//存档 加上边缘检测 避免一直接换输出模式 占用锁 一直写入寄存器 导致看门狗崩溃//由于下行注释原因 这个变量我们暂且不需要
     taskManager *Manager = (taskManager*)pvParameter;
     //12位分辨率的占空比范围是 0~4095
     while(1){
@@ -26,7 +25,7 @@ void taskManager::MPU6050_out_put(void *pvParameter)
     }
 }
 
-void taskManager::sensorlist_task(void *pvParameter) //每100ms更新一次平均值
+void taskManager::sensorlist_task(void *pvParameter) //每500ms更新一次平均值
 {   taskManager *Manager = (taskManager*)pvParameter;
     while(1){
         Manager->app->sensorlist_task_accomplish();
@@ -36,7 +35,7 @@ void taskManager::sensorlist_task(void *pvParameter) //每100ms更新一次平�
 void taskManager::led_control_task(void *pvParameter){//自动根据光照强度调整LED状态
     taskManager *Manager = (taskManager*)pvParameter;
     while(1){
-        Manager->app->Auto_led();//auto_led()函数的意义就是天黑天亮自动关灯轮询 但是唯一的问题是 除了auto_led()函数控制led亮与灭 与此同时还有中断的short_button 当short_button改变状态 auto_led()又回变回来 导致冲突 我就加上了 curr_state and last_tate 边缘判断机制 避免冲突
+        Manager->app->Auto_led();//auto_led()函数的意义就是天黑天亮自动关灯轮询 但是唯一的问题是 除了auto_led()函数控制led亮与灭 与此同时还有中断的short_button 当short_button改变状态 auto_led()又回变回来 导致冲突 我就在Auto_led（）函数里面加上了 curr_state and last_tate 边缘判断机制 避免冲突
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
@@ -76,12 +75,9 @@ void taskManager::short_button_task(void *pvParameter){
 taskManager::taskManager(Application* application)
 {   
     this->app = application;
-    
 }
 BaseType_t taskManager::task_create()
 {   
-
-
     if(app->sensorQueue != NULL){
         if(xTaskCreate(sensorlist_task, "Sensor_Task", 4096, this, 5, &sensorlist_task_Handle) != pdPASS ){ESP_LOGE("MAIN_task_create","sensorlist_task 创建失败"); return pdFAIL;}
         if(xTaskCreate(mqtt_publish_task, "MQTT_Queue_Task", 4096, this, 5, &mqtt_publish_task_handl) != pdPASS){ESP_LOGE("MAIN_task_create","mqtt_publish_task 创建失败");return pdFAIL;}

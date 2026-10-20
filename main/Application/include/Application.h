@@ -30,7 +30,7 @@ class Application{
     public:
         // 获取单例实例 (整个系统只有一个 Application)
         static Application* GetInstance() {
-            static Application instance;//先是：因为有static 所以分配空间后 全部是nullptr//然后：运行类的构造函数 填数据 就不是空壳
+            static Application instance;
             return &instance;
         }
         
@@ -63,8 +63,7 @@ class Application{
         static void IRAM_ATTR short_button_press_event(void* arg);
         static enum SystemState sys_state;
         int64_t last_time;
-        // 禁用拷贝构造和赋值//避免破坏单例约束
-        Application(const Application&) = delete;
+        Application(const Application&) = delete;// 禁用拷贝构造和赋值//避免破坏单例约束
         Application& operator=(const Application&) = delete;
         static const char* isr_tag;        
         static bool last_state;

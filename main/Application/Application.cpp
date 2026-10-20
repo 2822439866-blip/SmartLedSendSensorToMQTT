@@ -92,12 +92,12 @@ void Application::Auto_led()
     }else if(light < 750){this->current_state = false;
     }
     if(this->last_state == true && this->current_state == false){
-        //从亮变暗了
+        //从亮变暗
         this->bluleled->blink();
         ESP_LOGE("led","开灯");
     }
     if(this->last_state == false && this->current_state == true){
-        //从暗变亮了
+        //从暗变亮
         this->bluleled->close();
         ESP_LOGE("led","关灯");
     }
@@ -105,80 +105,59 @@ void Application::Auto_led()
 }
 void Application::breath_led_accomplish()
 {
-    /*if(last_sys_state == SYS_STATE_NORMAL && sys_state != SYS_STATE_NORMAL){//如果是 正常模式->非正常模式 的话 要开闪烁模式 就要把原先的PWM输出模式改成gpio输出模式//引脚被 PWM 硬件控制器霸占， gpio_set_level 完全控制不了
-            breath_y_led->led_pwm_to_gpio();
-        }else if(last_sys_state != SYS_STATE_NORMAL && sys_state == SYS_STATE_NORMAL){//非正常模式 -> 正常模式
-            breath_y_led->led_gpio_to_pwm();
+
+    SystemState curr_sys_state_in_breath_led_accomplish = this->get_sys_state();
+    if(curr_sys_state_in_breath_led_accomplish == SystemState::sys_static){//如果静止
+        //第一次开始静静态//暂停正常publsh 开启低功耗publsh
+        this->mpu6050->curr_sys_state_is_static = true;
+        if(this->mpu6050->last_sys_state_is_static == false && this->mpu6050->curr_sys_state_is_static == true){
+            ESP_LOGW(this->mpu6050->MPU6050_tag,"检测到系统长时间静止，开启低功耗模式");
+            vTaskSuspend(publsh_handl);
+            vTaskResume(low_power_publsh_hanel);
         }
-            当你在初始化时调用了官方的 ledc_channel_config，ESP32 底层会将物理引脚（GPIO 4）通过内部的 GPIO 矩阵（GPIO Matrix） 强行硬连线到 PWM 外设信号上。
-            当你断开 Wi-Fi 触发错误，代码跑去执行 gpio_reset_pin 和 gpio_config 时，虽然把引脚的方向改成了“输出模式”，但是！它并没有去切断 GPIO 矩阵与 PWM 硬件之间的物理连线！ 
-            引脚依然被硬性绑定在刚才停止的 LEDC 通道上。无论你在 wifi_err_blink() 里如何调用 gpio_set_level(pin, 1) 或 0，物理引脚根本听不到 GPIO 的命令，它依然保持着被锁死在
-            LEDC 停止时的那个电平（也就是你看到的常亮）。*/
-            //172 && 175行切换使用pwm 或 gpio输出函数无效 函数无用 因为引脚被 PWM 硬件控制器霸占， gpio_set_level 完全控制不了
-
-        //获取当前系统状态
-        SystemState curr_sys_state_in_breath_led_accomplish = this->get_sys_state();
-
-        if(curr_sys_state_in_breath_led_accomplish == SystemState::sys_static){          //如果静止
-            //第一次开始静静态
-            this->mpu6050->curr_sys_state_is_static = true;
-            if(this->mpu6050->last_sys_state_is_static == false && this->mpu6050->curr_sys_state_is_static == true){
-                ESP_LOGW(this->mpu6050->MPU6050_tag,"检测到系统长时间静止，开启低功耗模式");
-                vTaskSuspend(publsh_handl);
-                vTaskResume(low_power_publsh_hanel);
-            }
-
-        }else{//不静止
-            this->mpu6050->curr_sys_state_is_static = false;
-            if(this->mpu6050->last_sys_state_is_static == true && this->mpu6050->curr_sys_state_is_static == false){
-                ESP_LOGW(this->mpu6050->MPU6050_tag,"检测到系统移动，关闭低功耗模式");
-                vTaskSuspend(low_power_publsh_hanel);
-                vTaskResume(publsh_handl);
-            }
-
+    }else{//不静止
+        this->mpu6050->curr_sys_state_is_static = false;
+        if(this->mpu6050->last_sys_state_is_static == true && this->mpu6050->curr_sys_state_is_static == false){
+            ESP_LOGW(this->mpu6050->MPU6050_tag,"检测到系统移动，关闭低功耗模式");
+            vTaskSuspend(low_power_publsh_hanel);
+            vTaskResume(publsh_handl);
         }
-
-        switch (curr_sys_state_in_breath_led_accomplish)
-        {
-        case SystemState::WifiError:
-            this->mpu6050->curr_sys_state_is_static = false;
-            ESP_LOGE(this->wifi->wifi_tag, "WiFi 断开了...");
-            //WiFi断开错误模式
-            this->breath_y_led->wifi_err_blink();
-            break;
-        case SystemState::MqttError:
-            this->mpu6050->curr_sys_state_is_static = false;
-            ESP_LOGE(this->mqtt->mqtt_tag, "MQTT 断开了...但是wifi是好的");
-            //MQTT断开错误模式
-            this->breath_y_led->mqtt_err_blink();
-            break;
-        case SystemState::sys_static://降低功耗逻辑
-            //1.呼吸灯不亮2.publsh频率变慢
-            //1.
-            this->mpu6050->curr_sys_state_is_static = true;
-            this->breath_y_led->set_safe_duty(0);
-            //暂停正常publsh 开启低功耗publsh
-            break;
-        case SystemState::Normal:
-            this->mpu6050->curr_sys_state_is_static = false;
-             // 设置占空比
-            //ledc_set_duty(breath_y_led->LEDC_MODE, breath_y_led->LEDC_CHANNEL, duty);//是非原子、非线程安全的两步操作，多核 / 多任务下极易冲突
-            //ledc_update_duty(breath_y_led->LEDC_MODE, breath_y_led->LEDC_CHANNEL);//是非原子、非线程安全的两步操作，多核 / 多任务下极易冲突
-            this->breath_y_led->set_safe_duty(this->duty);//我们自己封装的线程安全函数，内部用自旋锁保护了占空比设置和更新的原子操作
-            // 调整亮度
-            this->duty += this->fade;
-            // 到达边界反转方向
-            if (this->duty >= 4095) {
-                this->fade = -20;   
-            } else if (this->duty <= 0) {
-                this->fade = 20;   
-            }
-
-            break;
-        default:
-            break;
+    }
+    switch (curr_sys_state_in_breath_led_accomplish)
+    {
+    case SystemState::WifiError:
+        this->mpu6050->curr_sys_state_is_static = false;
+        ESP_LOGE(this->wifi->wifi_tag, "WiFi 断开了...");
+        //WiFi断开错误模式
+        this->breath_y_led->wifi_err_blink();
+        break;
+    case SystemState::MqttError:
+        this->mpu6050->curr_sys_state_is_static = false;
+        ESP_LOGE(this->mqtt->mqtt_tag, "MQTT 断开了...但是wifi是好的");
+        //MQTT断开错误模式
+        this->breath_y_led->mqtt_err_blink();
+        break;
+    case SystemState::sys_static:
+        this->mpu6050->curr_sys_state_is_static = true;
+        this->breath_y_led->set_safe_duty(0); //呼吸灯不亮
+        break;
+    case SystemState::Normal:
+        this->mpu6050->curr_sys_state_is_static = false;
+        // 设置占空比
+        this->breath_y_led->set_safe_duty(this->duty);//我们自己封装的线程安全函数，内部用自旋锁保护了占空比设置和更新的原子操作
+        // 调整亮度
+        this->duty += this->fade;
+        // 到达边界反转方向
+        if (this->duty >= 4095) {
+            this->fade = -20;   
+        } else if (this->duty <= 0) {
+            this->fade = 20;   
         }
-        this->mpu6050->last_sys_state_is_static = this->mpu6050->curr_sys_state_is_static;
+        break;
+    default:
+        break;
+    }
+    this->mpu6050->last_sys_state_is_static = this->mpu6050->curr_sys_state_is_static;
 }
 void Application::sensorlist_task_accomplish()
 {   //任务每一次执行都取10次平均，放入sensorlist里面
@@ -193,7 +172,6 @@ void Application::sensorlist_task_accomplish()
 
     //发消息任务
     int light = this->v->getsensorListAve();
-
     char payload[50];
     int value = snprintf(payload,sizeof(payload),"{\"light_value\": %d}", light);
     if(0 < value && value < 50){//防止缓冲区溢出
