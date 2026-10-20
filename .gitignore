@@ -1,4 +1,5 @@
 **/app_config.h
+components\app_config\include\app_config.h
 config.local.h
 secrets.h
 
