@@ -26,7 +26,7 @@ void wifiManager::eventHandler(void *arg, esp_event_base_t event_base, int32_t e
         esp_wifi_connect(); 
     }else if(event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED){
         wifi_event_sta_disconnected_t* event = (wifi_event_sta_disconnected_t*) event_data;
-        ESP_LOGE(wifi_tag, "⚠️ diss dissconnected: %d", event->reason);
+        ESP_LOGE(wifi_tag, "diss dissconnected: %d", event->reason);
         // 更新系统状态 呼吸灯会感知到这个状态并改变自己的行为
         xEventGroupClearBits(wifi->sys_state_group, SYS_STATE_BIT_WIFI_CONNECTED); // 更新系统状态
         if (wifi->retry_num < MAX_RETRY) {
