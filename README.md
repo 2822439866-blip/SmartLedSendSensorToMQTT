@@ -165,6 +165,13 @@ MQTT数据流调度模型重构：
 **-参数通过调用app_config.h宏定义 目前无硬编码-**
  	（目前在配置Wi-Fi，MQTT Broker 地址，Topic 节点采用硬编码，写死了，未来可能会采用通过公共接口，或者是引入微信小程序配网或基于NVS的Web Server配网页面，提高设备灵活性，实现真正通用落地能力）
 
+## 测试实例
+### 关于wifi重连机制 1.测试了在规定恢复次数内手动断开/启动wifi 使主机重连 2.以及超出规定回复次数断/启动WiFi
+*测试文档在以下目录
+* 1.docs\wifi disconnect test\log文件\restore_5_tims.txt
+* 2.docs\wifi disconnect test\log文件\restore_over_5_time.txt
+* 总结内容 ：docs\wifi disconnect test\总结.txt
+
 ## 关于低功耗说明
 
 当前项目中的“低功耗移动检测”主要指**基于运动状态降低 MQTT 上报频率**，用于减少网络交互频率和业务侧消息压力，并非完整意义上的 ESP32 CPU/Wi-Fi 射频低功耗优化。
