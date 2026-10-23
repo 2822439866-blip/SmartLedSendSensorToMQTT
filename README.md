@@ -167,6 +167,8 @@ MQTT数据流调度模型重构：
 
 ## 测试实例
 ### 关于wifi重连机制 1.测试了在规定恢复次数内手动断开/启动wifi 使主机重连 2.以及超出规定回复次数断/启动WiFi
+*全链路自愈 16.6s（MQTT 重连 8.8s）
+*断网→5 次重试耗尽后恢复：FAIL，热点恢复 3 分钟设备仍离线，须重启
 *测试文档在以下目录
 * 1.docs\wifi disconnect test\log文件\restore_5_tims.txt
 * 2.docs\wifi disconnect test\log文件\restore_over_5_time.txt
