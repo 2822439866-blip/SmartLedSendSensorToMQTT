@@ -1,0 +1,567 @@
+ (128322) MQTT_Class: 发布 MQTT 消息: {"light_value": 876}
+I (129322) MQTT_Class: 发布 MQTT 消息: {"light_value": 869}
+I (130322) MQTT_Class: 发布 MQTT 消息: {"light_value": 884}
+I (131322) MQTT_Class: 发布 MQTT 消息: {"light_value": 864}
+I (132322) MQTT_Class: 发布 MQTT 消息: {"light_value": 868}
+I (133322) MQTT_Class: 发布 MQTT 消息: {"light_value": 864}
+I (134322) MQTT_Class: 发布 MQTT 消息: {"light_value": 892}
+I (135322) MQTT_Class: 发布 MQTT 消息: {"light_value": 910}
+I (136322) MQTT_Class: 发布 MQTT 消息: {"light_value": 940}
+I (137322) MQTT_Class: 发布 MQTT 消息: {"light_value": 948}
+I (138322) MQTT_Class: 发布 MQTT 消息: {"light_value": 949}
+I (139322) MQTT_Class: 发布 MQTT 消息: {"light_value": 948}
+I (140322) MQTT_Class: 发布 MQTT 消息: {"light_value": 948}
+W (140822) MPU6050: 检测到系统长时间静止，开启低功耗模式
+I (140822) MQTT_Class: 发布 MQTT 消息: {"light_value": 842}
+W (142422) MPU6050: 检测到系统移动，关闭低功耗模式
+I (142422) MQTT_Class: 发布 MQTT 消息: {"light_value": 931}
+I (143422) MQTT_Class: 发布 MQTT 消息: {"light_value": 904}
+I (144422) MQTT_Class: 发布 MQTT 消息: {"light_value": 899}
+W (145422) MPU6050: 检测到系统长时间静止，开启低功耗模式
+W (145422) MQTT_Class: 当前sensorQueue无数据 不可发送mqtt消息
+W (145822) MPU6050: 检测到系统移动，关闭低功耗模式
+I (145822) MQTT_Class: 发布 MQTT 消息: {"light_value": 907}
+I (146232) wifi:bcn_timeout,ap_probe_send_start
+I (146822) MQTT_Class: 发布 MQTT 消息: {"light_value": 899}
+I (147822) MQTT_Class: 发布 MQTT 消息: {"light_value": 907}
+I (148732) wifi:ap_probe_send over, reset wifi status to disassoc
+I (148732) wifi:state: run -> init (0xc800)
+I (148742) wifi:pm stop, total sleep time: 88900813 us / 147786317 us
+
+I (148742) wifi:<ba-del>idx:0, tid:0
+I (148742) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0
+E (148752) wifi: ⚠️ diss dissconnected: 200
+W (148752) wifi: 断开或未连上，正在进行第 1 次自动重连...
+E (148762) transport_base: tcp_read error, errno=Software caused connection abort
+E (148762) wifi: WiFi 断开了...
+E (148762) mqtt_client: esp_mqtt_handle_transport_read_error: transport_read() error: errno=113
+I (148782) MQTT_Class: MQTT_EVENT_ERROR
+E (148782) MQTT_Class: reported from esp-tls: 0
+E (148782) MQTT_Class: reported from tls stack: 0
+E (148792) MQTT_Class: captured as transport's socket errno: 113
+I (148792) MQTT_Class: Last errno string (Software caused connection abort)
+E (148802) mqtt_client: mqtt_process_receive: mqtt_message_receive() returned -2
+W (148812) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (148812) MQTT_Class: 链接断开了...
+W (148822) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (148832) MQTT_Class: 当前信息: {"light_value": 941}
+W (149832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (149832) MQTT_Class: 当前信息: {"light_value": 948}
+W (150832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (150832) MQTT_Class: 当前信息: {"light_value": 956}
+E (150992) wifi: WiFi 断开了...
+E (151172) wifi: ⚠️ diss dissconnected: 201
+W (151172) wifi: 断开或未连上，正在进行第 2 次自动重连...
+W (151832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (151832) MQTT_Class: 当前信息: {"light_value": 950}
+W (152832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (152832) MQTT_Class: 当前信息: {"light_value": 935}
+E (153202) wifi: WiFi 断开了...
+E (153592) wifi: ⚠️ diss dissconnected: 201
+W (153592) wifi: 断开或未连上，正在进行第 3 次自动重连...
+W (153832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (153832) MQTT_Class: 当前信息: {"light_value": 903}
+W (154832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (154832) MQTT_Class: 当前信息: {"light_value": 866}
+E (155412) wifi: WiFi 断开了...
+W (155832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (155832) MQTT_Class: 当前信息: {"light_value": 840}
+E (156012) wifi: ⚠️ diss dissconnected: 201
+W (156012) wifi: 断开或未连上，正在进行第 4 次自动重连...
+W (156832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (156832) MQTT_Class: 当前信息: {"light_value": 837}
+E (157622) wifi: WiFi 断开了...
+W (157832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (157832) MQTT_Class: 当前信息: {"light_value": 835}
+E (158432) wifi: ⚠️ diss dissconnected: 201
+W (158432) wifi: 断开或未连上，正在进行第 5 次自动重连...
+I (158822) MQTT_Class: Other event id:7
+W (158832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (158832) MQTT_Class: 当前信息: {"light_value": 833}
+W (159832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (159832) MQTT_Class: 当前信息: {"light_value": 831}
+E (159832) wifi: WiFi 断开了...
+W (160832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (160832) MQTT_Class: 当前信息: {"light_value": 827}
+E (160852) wifi: ⚠️ diss dissconnected: 201
+W (161832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (161832) MQTT_Class: 当前信息: {"light_value": 830}
+E (162042) wifi: WiFi 断开了...
+W (162832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (162832) MQTT_Class: 当前信息: {"light_value": 833}
+W (163832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (163832) MQTT_Class: 当前信息: {"light_value": 837}
+E (164252) wifi: WiFi 断开了...
+W (164832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (164832) MQTT_Class: 当前信息: {"light_value": 843}
+E (165822) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (165822) transport_base: Failed to open a new connection: 32769
+E (165822) mqtt_client: Error transport connect
+I (165822) MQTT_Class: MQTT_EVENT_ERROR
+W (165832) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+E (165832) MQTT_Class: reported from esp-tls: 32769
+I (165842) MQTT_Class: 当前信息: {"light_value": 849}
+E (165842) MQTT_Class: reported from tls stack: 0
+E (165852) MQTT_Class: captured as transport's socket errno: 113
+I (165862) MQTT_Class: Last errno string (Software caused connection abort)
+W (165862) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (165872) MQTT_Class: 链接断开了...
+E (166462) wifi: WiFi 断开了...
+W (166852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (166852) MQTT_Class: 当前信息: {"light_value": 851}
+W (167852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (167852) MQTT_Class: 当前信息: {"light_value": 853}
+E (168672) wifi: WiFi 断开了...
+W (168852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (168852) MQTT_Class: 当前信息: {"light_value": 853}
+W (169852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (169852) MQTT_Class: 当前信息: {"light_value": 854}
+W (170852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (170852) MQTT_Class: 当前信息: {"light_value": 853}
+E (170882) wifi: WiFi 断开了...
+W (171852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (171852) MQTT_Class: 当前信息: {"light_value": 852}
+W (172852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (172852) MQTT_Class: 当前信息: {"light_value": 850}
+E (173092) wifi: WiFi 断开了...
+W (173852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (173852) MQTT_Class: 当前信息: {"light_value": 850}
+W (174852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (174852) MQTT_Class: 当前信息: {"light_value": 850}
+E (175302) wifi: WiFi 断开了...
+W (175852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (175852) MQTT_Class: 当前信息: {"light_value": 850}
+I (175872) MQTT_Class: Other event id:7
+W (176852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (176852) MQTT_Class: 当前信息: {"light_value": 851}
+E (177512) wifi: WiFi 断开了...
+W (177852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (177852) MQTT_Class: 当前信息: {"light_value": 852}
+W (178852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (178852) MQTT_Class: 当前信息: {"light_value": 853}
+E (179722) wifi: WiFi 断开了...
+W (179852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (179852) MQTT_Class: 当前信息: {"light_value": 855}
+W (180852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (180852) MQTT_Class: 当前信息: {"light_value": 857}
+W (181852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (181852) MQTT_Class: 当前信息: {"light_value": 857}
+E (181932) wifi: WiFi 断开了...
+W (182852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (182852) MQTT_Class: 当前信息: {"light_value": 885}
+E (182872) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (182872) transport_base: Failed to open a new connection: 32769
+E (182872) mqtt_client: Error transport connect
+I (182872) MQTT_Class: MQTT_EVENT_ERROR
+E (182882) MQTT_Class: reported from esp-tls: 32769
+E (182882) MQTT_Class: reported from tls stack: 0
+E (182892) MQTT_Class: captured as transport's socket errno: 113
+I (182892) MQTT_Class: Last errno string (Software caused connection abort)
+W (182902) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (182902) MQTT_Class: 链接断开了...
+W (183852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (183852) MQTT_Class: 当前信息: {"light_value": 918}
+E (184142) wifi: WiFi 断开了...
+W (184852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (184852) MQTT_Class: 当前信息: {"light_value": 950}
+W (185852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (185852) MQTT_Class: 当前信息: {"light_value": 980}
+E (186352) wifi: WiFi 断开了...
+E (186812) led: 关灯
+W (186852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (186852) MQTT_Class: 当前信息: {"light_value": 1011}
+W (187852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (187852) MQTT_Class: 当前信息: {"light_value": 1013}
+E (188562) wifi: WiFi 断开了...
+W (188852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (188852) MQTT_Class: 当前信息: {"light_value": 1010}
+W (189852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (189852) MQTT_Class: 当前信息: {"light_value": 1008}
+E (190772) wifi: WiFi 断开了...
+W (190852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (190852) MQTT_Class: 当前信息: {"light_value": 1009}
+W (191852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (191852) MQTT_Class: 当前信息: {"light_value": 1010}
+W (192852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (192852) MQTT_Class: 当前信息: {"light_value": 1015}
+I (192912) MQTT_Class: Other event id:7
+E (192982) wifi: WiFi 断开了...
+W (193852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (193852) MQTT_Class: 当前信息: {"light_value": 1020}
+W (194852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (194852) MQTT_Class: 当前信息: {"light_value": 1025}
+E (195192) wifi: WiFi 断开了...
+W (195852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (195852) MQTT_Class: 当前信息: {"light_value": 1028}
+W (196852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (196852) MQTT_Class: 当前信息: {"light_value": 1028}
+E (197402) wifi: WiFi 断开了...
+W (197852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (197852) MQTT_Class: 当前信息: {"light_value": 1025}
+W (198852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (198852) MQTT_Class: 当前信息: {"light_value": 1020}
+E (199612) wifi: WiFi 断开了...
+W (199852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (199852) MQTT_Class: 当前信息: {"light_value": 1014}
+E (199912) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (199912) transport_base: Failed to open a new connection: 32769
+E (199912) mqtt_client: Error transport connect
+I (199912) MQTT_Class: MQTT_EVENT_ERROR
+E (199922) MQTT_Class: reported from esp-tls: 32769
+E (199922) MQTT_Class: reported from tls stack: 0
+E (199932) MQTT_Class: captured as transport's socket errno: 113
+I (199932) MQTT_Class: Last errno string (Software caused connection abort)
+W (199942) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (199942) MQTT_Class: 链接断开了...
+W (200852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (200852) MQTT_Class: 当前信息: {"light_value": 1010}
+E (201822) wifi: WiFi 断开了...
+W (201852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (201852) MQTT_Class: 当前信息: {"light_value": 1007}
+W (202852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (202852) MQTT_Class: 当前信息: {"light_value": 1006}
+W (203852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (203852) MQTT_Class: 当前信息: {"light_value": 1007}
+E (204032) wifi: WiFi 断开了...
+W (204852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (204852) MQTT_Class: 当前信息: {"light_value": 1009}
+W (205852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (205852) MQTT_Class: 当前信息: {"light_value": 1012}
+E (206242) wifi: WiFi 断开了...
+W (206852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (206852) MQTT_Class: 当前信息: {"light_value": 1015}
+W (207852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (207852) MQTT_Class: 当前信息: {"light_value": 1018}
+E (208452) wifi: WiFi 断开了...
+W (208852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (208852) MQTT_Class: 当前信息: {"light_value": 1020}
+W (209852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (209852) MQTT_Class: 当前信息: {"light_value": 1019}
+I (209952) MQTT_Class: Other event id:7
+E (210662) wifi: WiFi 断开了...
+W (210852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (210852) MQTT_Class: 当前信息: {"light_value": 1017}
+W (211852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (211852) MQTT_Class: 当前信息: {"light_value": 1014}
+W (212852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (212852) MQTT_Class: 当前信息: {"light_value": 1011}
+E (212872) wifi: WiFi 断开了...
+W (213852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (213852) MQTT_Class: 当前信息: {"light_value": 1008}
+W (214852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (214852) MQTT_Class: 当前信息: {"light_value": 1007}
+E (215082) wifi: WiFi 断开了...
+W (215852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (215852) MQTT_Class: 当前信息: {"light_value": 1006}
+W (216852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (216852) MQTT_Class: 当前信息: {"light_value": 1008}
+E (216952) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (216952) transport_base: Failed to open a new connection: 32769
+E (216952) mqtt_client: Error transport connect
+I (216952) MQTT_Class: MQTT_EVENT_ERROR
+E (216962) MQTT_Class: reported from esp-tls: 32769
+E (216962) MQTT_Class: reported from tls stack: 0
+E (216972) MQTT_Class: captured as transport's socket errno: 113
+I (216972) MQTT_Class: Last errno string (Software caused connection abort)
+W (216982) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (216982) MQTT_Class: 链接断开了...
+E (217292) wifi: WiFi 断开了...
+W (217852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (217852) MQTT_Class: 当前信息: {"light_value": 1011}
+W (218852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (218852) MQTT_Class: 当前信息: {"light_value": 1015}
+E (219502) wifi: WiFi 断开了...
+W (219852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (219852) MQTT_Class: 当前信息: {"light_value": 1018}
+W (220852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (220852) MQTT_Class: 当前信息: {"light_value": 1021}
+E (221712) wifi: WiFi 断开了...
+W (221852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (221852) MQTT_Class: 当前信息: {"light_value": 1021}
+W (222852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (222852) MQTT_Class: 当前信息: {"light_value": 1020}
+W (223852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (223852) MQTT_Class: 当前信息: {"light_value": 1017}
+E (223922) wifi: WiFi 断开了...
+W (224852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (224852) MQTT_Class: 当前信息: {"light_value": 1013}
+W (225852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (225852) MQTT_Class: 当前信息: {"light_value": 1010}
+E (226132) wifi: WiFi 断开了...
+W (226852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (226852) MQTT_Class: 当前信息: {"light_value": 1008}
+I (226992) MQTT_Class: Other event id:7
+W (227852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (227852) MQTT_Class: 当前信息: {"light_value": 1006}
+E (228342) wifi: WiFi 断开了...
+W (228852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (228852) MQTT_Class: 当前信息: {"light_value": 1006}
+W (229852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (229852) MQTT_Class: 当前信息: {"light_value": 1008}
+E (230552) wifi: WiFi 断开了...
+W (230852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (230852) MQTT_Class: 当前信息: {"light_value": 1011}
+W (231852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (231852) MQTT_Class: 当前信息: {"light_value": 1014}
+E (232762) wifi: WiFi 断开了...
+W (232852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (232852) MQTT_Class: 当前信息: {"light_value": 1017}
+W (233852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (233852) MQTT_Class: 当前信息: {"light_value": 1019}
+E (233992) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (233992) transport_base: Failed to open a new connection: 32769
+E (233992) mqtt_client: Error transport connect
+I (233992) MQTT_Class: MQTT_EVENT_ERROR
+E (234002) MQTT_Class: reported from esp-tls: 32769
+E (234002) MQTT_Class: reported from tls stack: 0
+E (234012) MQTT_Class: captured as transport's socket errno: 113
+I (234012) MQTT_Class: Last errno string (Software caused connection abort)
+W (234022) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (234022) MQTT_Class: 链接断开了...
+W (234852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (234852) MQTT_Class: 当前信息: {"light_value": 1020}
+E (234972) wifi: WiFi 断开了...
+W (235852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (235852) MQTT_Class: 当前信息: {"light_value": 1019}
+W (236852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (236852) MQTT_Class: 当前信息: {"light_value": 1016}
+E (237182) wifi: WiFi 断开了...
+W (237852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (237852) MQTT_Class: 当前信息: {"light_value": 1014}
+W (238852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (238852) MQTT_Class: 当前信息: {"light_value": 1011}
+E (239392) wifi: WiFi 断开了...
+W (239852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (239852) MQTT_Class: 当前信息: {"light_value": 1009}
+W (240852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (240852) MQTT_Class: 当前信息: {"light_value": 1008}
+E (241602) wifi: WiFi 断开了...
+W (241852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (241852) MQTT_Class: 当前信息: {"light_value": 1007}
+W (242852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (242852) MQTT_Class: 当前信息: {"light_value": 1008}
+E (243812) wifi: WiFi 断开了...
+W (243852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (243852) MQTT_Class: 当前信息: {"light_value": 1010}
+I (244032) MQTT_Class: Other event id:7
+W (244852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (244852) MQTT_Class: 当前信息: {"light_value": 1013}
+W (245852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (245852) MQTT_Class: 当前信息: {"light_value": 1016}
+E (246022) wifi: WiFi 断开了...
+W (246852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (246852) MQTT_Class: 当前信息: {"light_value": 1019}
+W (247852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (247852) MQTT_Class: 当前信息: {"light_value": 1019}
+E (248232) wifi: WiFi 断开了...
+W (248852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (248852) MQTT_Class: 当前信息: {"light_value": 1018}
+W (249852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (249852) MQTT_Class: 当前信息: {"light_value": 1015}
+E (250442) wifi: WiFi 断开了...
+W (250852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (250852) MQTT_Class: 当前信息: {"light_value": 1011}
+E (251032) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (251032) transport_base: Failed to open a new connection: 32769
+E (251032) mqtt_client: Error transport connect
+I (251032) MQTT_Class: MQTT_EVENT_ERROR
+E (251042) MQTT_Class: reported from esp-tls: 32769
+E (251042) MQTT_Class: reported from tls stack: 0
+E (251052) MQTT_Class: captured as transport's socket errno: 113
+I (251052) MQTT_Class: Last errno string (Software caused connection abort)
+W (251062) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (251062) MQTT_Class: 链接断开了...
+W (251852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (251852) MQTT_Class: 当前信息: {"light_value": 1008}
+E (252652) wifi: WiFi 断开了...
+W (252852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (252852) MQTT_Class: 当前信息: {"light_value": 1006}
+W (253852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (253852) MQTT_Class: 当前信息: {"light_value": 1005}
+W (254852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (254852) MQTT_Class: 当前信息: {"light_value": 1005}
+E (254862) wifi: WiFi 断开了...
+W (255852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (255852) MQTT_Class: 当前信息: {"light_value": 1007}
+W (256852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (256852) MQTT_Class: 当前信息: {"light_value": 1009}
+E (257072) wifi: WiFi 断开了...
+W (257852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (257852) MQTT_Class: 当前信息: {"light_value": 1013}
+W (258852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (258852) MQTT_Class: 当前信息: {"light_value": 1016}
+E (259282) wifi: WiFi 断开了...
+W (259852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (259852) MQTT_Class: 当前信息: {"light_value": 1017}
+W (260852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (260852) MQTT_Class: 当前信息: {"light_value": 1017}
+I (261072) MQTT_Class: Other event id:7
+E (261492) wifi: WiFi 断开了...
+W (261852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (261852) MQTT_Class: 当前信息: {"light_value": 1015}
+W (262852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (262852) MQTT_Class: 当前信息: {"light_value": 1013}
+E (263702) wifi: WiFi 断开了...
+W (263852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (263852) MQTT_Class: 当前信息: {"light_value": 1011}
+W (264852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (264852) MQTT_Class: 当前信息: {"light_value": 1008}
+W (265852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (265852) MQTT_Class: 当前信息: {"light_value": 1006}
+E (265912) wifi: WiFi 断开了...
+W (266852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (266852) MQTT_Class: 当前信息: {"light_value": 1005}
+W (267852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (267852) MQTT_Class: 当前信息: {"light_value": 1005}
+E (268072) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (268072) transport_base: Failed to open a new connection: 32769
+E (268072) mqtt_client: Error transport connect
+I (268072) MQTT_Class: MQTT_EVENT_ERROR
+E (268082) MQTT_Class: reported from esp-tls: 32769
+E (268082) MQTT_Class: reported from tls stack: 0
+E (268092) MQTT_Class: captured as transport's socket errno: 113
+I (268092) MQTT_Class: Last errno string (Software caused connection abort)
+W (268102) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (268102) MQTT_Class: 链接断开了...
+E (268122) wifi: WiFi 断开了...
+W (268852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (268852) MQTT_Class: 当前信息: {"light_value": 1007}
+W (269852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (269852) MQTT_Class: 当前信息: {"light_value": 1010}
+E (270332) wifi: WiFi 断开了...
+W (270852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (270852) MQTT_Class: 当前信息: {"light_value": 1014}
+W (271852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (271852) MQTT_Class: 当前信息: {"light_value": 1017}
+E (272542) wifi: WiFi 断开了...
+W (272852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (272852) MQTT_Class: 当前信息: {"light_value": 1020}
+W (273852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (273852) MQTT_Class: 当前信息: {"light_value": 1021}
+E (274752) wifi: WiFi 断开了...
+W (274852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (274852) MQTT_Class: 当前信息: {"light_value": 1020}
+W (275852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (275852) MQTT_Class: 当前信息: {"light_value": 1017}
+W (276852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (276852) MQTT_Class: 当前信息: {"light_value": 1015}
+E (276962) wifi: WiFi 断开了...
+W (277852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (277852) MQTT_Class: 当前信息: {"light_value": 1012}
+I (278112) MQTT_Class: Other event id:7
+W (278852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (278852) MQTT_Class: 当前信息: {"light_value": 1010}
+E (279172) wifi: WiFi 断开了...
+W (279852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (279852) MQTT_Class: 当前信息: {"light_value": 1009}
+W (280852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (280852) MQTT_Class: 当前信息: {"light_value": 1009}
+E (281382) wifi: WiFi 断开了...
+W (281852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (281852) MQTT_Class: 当前信息: {"light_value": 1011}
+W (282852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (282852) MQTT_Class: 当前信息: {"light_value": 1013}
+E (283592) wifi: WiFi 断开了...
+W (283852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (283852) MQTT_Class: 当前信息: {"light_value": 1017}
+W (284852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (284852) MQTT_Class: 当前信息: {"light_value": 1022}
+E (285112) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (285112) transport_base: Failed to open a new connection: 32769
+E (285112) mqtt_client: Error transport connect
+I (285112) MQTT_Class: MQTT_EVENT_ERROR
+E (285122) MQTT_Class: reported from esp-tls: 32769
+E (285122) MQTT_Class: reported from tls stack: 0
+E (285132) MQTT_Class: captured as transport's socket errno: 113
+I (285132) MQTT_Class: Last errno string (Software caused connection abort)
+W (285142) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (285142) MQTT_Class: 链接断开了...
+E (285802) wifi: WiFi 断开了...
+W (285852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (285852) MQTT_Class: 当前信息: {"light_value": 1026}
+W (286852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (286852) MQTT_Class: 当前信息: {"light_value": 1030}
+W (287852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (287852) MQTT_Class: 当前信息: {"light_value": 1033}
+E (288012) wifi: WiFi 断开了...
+W (288852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (288852) MQTT_Class: 当前信息: {"light_value": 1032}
+W (289852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (289852) MQTT_Class: 当前信息: {"light_value": 1029}
+E (290222) wifi: WiFi 断开了...
+W (290852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (290852) MQTT_Class: 当前信息: {"light_value": 1026}
+W (291852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (291852) MQTT_Class: 当前信息: {"light_value": 1022}
+E (292432) wifi: WiFi 断开了...
+W (292852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (292852) MQTT_Class: 当前信息: {"light_value": 1017}
+W (293852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (293852) MQTT_Class: 当前信息: {"light_value": 1015}
+E (294642) wifi: WiFi 断开了...
+W (294852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (294852) MQTT_Class: 当前信息: {"light_value": 1013}
+I (295152) MQTT_Class: Other event id:7
+W (295852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (295852) MQTT_Class: 当前信息: {"light_value": 1014}
+W (296852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (296852) MQTT_Class: 当前信息: {"light_value": 1016}
+E (296852) wifi: WiFi 断开了...
+W (297852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (297852) MQTT_Class: 当前信息: {"light_value": 1020}
+W (298852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (298852) MQTT_Class: 当前信息: {"light_value": 1024}
+E (299062) wifi: WiFi 断开了...
+W (299852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (299852) MQTT_Class: 当前信息: {"light_value": 1027}
+W (300852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (300852) MQTT_Class: 当前信息: {"light_value": 1029}
+E (301272) wifi: WiFi 断开了...
+W (301852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (301852) MQTT_Class: 当前信息: {"light_value": 1030}
+E (302152) esp-tls: couldn't get hostname for :broker.emqx.io: getaddrinfo() returns 202, addrinfo=0x0
+E (302152) transport_base: Failed to open a new connection: 32769
+E (302152) mqtt_client: Error transport connect
+I (302152) MQTT_Class: MQTT_EVENT_ERROR
+E (302162) MQTT_Class: reported from esp-tls: 32769
+E (302162) MQTT_Class: reported from tls stack: 0
+E (302172) MQTT_Class: captured as transport's socket errno: 113
+I (302172) MQTT_Class: Last errno string (Software caused connection abort)
+W (302182) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (302182) MQTT_Class: 链接断开了...
+W (302852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (302852) MQTT_Class: 当前信息: {"light_value": 1028}
+E (303482) wifi: WiFi 断开了...
+W (303852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (303852) MQTT_Class: 当前信息: {"light_value": 1025}
+W (304852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (304852) MQTT_Class: 当前信息: {"light_value": 1022}
+E (305692) wifi: WiFi 断开了...
+W (305852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (305852) MQTT_Class: 当前信息: {"light_value": 1019}
+W (306852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (306852) MQTT_Class: 当前信息: {"light_value": 1013}
+W (307852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (307852) MQTT_Class: 当前信息: {"light_value": 1010}
+E (307902) wifi: WiFi 断开了...
+W (308852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (308852) MQTT_Class: 当前信息: {"light_value": 1008}
+W (309852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (309852) MQTT_Class: 当前信息: {"light_value": 1007}
+E (310112) wifi: WiFi 断开了...
+W (310852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (310852) MQTT_Class: 当前信息: {"light_value": 1008}
+W (311852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (311852) MQTT_Class: 当前信息: {"light_value": 1011}
+I (312192) MQTT_Class: Other event id:7
+E (312322) wifi: WiFi 断开了...
+W (312852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (312852) MQTT_Class: 当前信息: {"light_value": 1015}
+W (313852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (313852) MQTT_Class: 当前信息: {"light_value": 1018}
+E (314532) wifi: WiFi 断开了...
+W (314852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (314852) MQTT_Class: 当前信息: {"light_value": 1020}
+W (315852) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (315852) MQTT_Class: 当前信息: {"light_value": 1020}
+E (316742) wifi: WiFi 断开了...

@@ -1,0 +1,112 @@
+
+I (515862) MQTT_Class: 发布 MQTT 消息: {"light_value": 526}
+I (516862) MQTT_Class: 发布 MQTT 消息: {"light_value": 563}
+I (517862) MQTT_Class: 发布 MQTT 消息: {"light_value": 606}
+I (518862) MQTT_Class: 发布 MQTT 消息: {"light_value": 639}
+I (519862) MQTT_Class: 发布 MQTT 消息: {"light_value": 697}
+I (520862) MQTT_Class: 发布 MQTT 消息: {"light_value": 694}
+I (521862) MQTT_Class: 发布 MQTT 消息: {"light_value": 726}
+I (522862) MQTT_Class: 发布 MQTT 消息: {"light_value": 802}
+I (523862) MQTT_Class: 发布 MQTT 消息: {"light_value": 891}
+I (524742) wifi:bcn_timeout,ap_probe_send_start
+I (524862) MQTT_Class: 发布 MQTT 消息: {"light_value": 955}
+E (525812) led: 关灯
+I (525862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1021}
+I (526862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1050}
+I (527242) wifi:ap_probe_send over, reset wifi status to disassoc
+I (527252) wifi:state: run -> init (0xc800)
+I (527262) wifi:pm stop, total sleep time: 30097274 us / 57072248 us
+
+I (527262) wifi:<ba-del>idx:0, tid:0
+I (527262) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0
+E (527272) wifi: ⚠️ diss dissconnected: 200
+E (527272) transport_base: tcp_read error, errno=Software caused connection abort
+W (527272) wifi: 断开或未连上，正在进行第 1 次自动重连...
+E (527272) mqtt_client: esp_mqtt_handle_transport_read_error: transport_read() error: errno=113
+E (527282) wifi: WiFi 断开了...
+I (527292) MQTT_Class: MQTT_EVENT_ERROR
+E (527302) MQTT_Class: reported from esp-tls: 0
+E (527302) MQTT_Class: reported from tls stack: 0
+E (527302) MQTT_Class: captured as transport's socket errno: 113
+I (527312) MQTT_Class: Last errno string (Software caused connection abort)
+E (527322) mqtt_client: mqtt_process_receive: mqtt_message_receive() returned -2
+W (527332) MQTT_Class: MQTT_EVENT_DISCONNECTED
+I (527332) MQTT_Class: 链接断开了...
+W (527862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (527862) MQTT_Class: 当前信息: {"light_value": 1057}
+W (528862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (528862) MQTT_Class: 当前信息: {"light_value": 1054}
+E (529512) wifi: WiFi 断开了...
+E (529692) wifi: ⚠️ diss dissconnected: 201
+W (529692) wifi: 断开或未连上，正在进行第 2 次自动重连...
+W (529862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (529862) MQTT_Class: 当前信息: {"light_value": 1017}
+W (530862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (530862) MQTT_Class: 当前信息: {"light_value": 986}
+E (531722) wifi: WiFi 断开了...
+W (531862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (531862) MQTT_Class: 当前信息: {"light_value": 901}
+E (532112) wifi: ⚠️ diss dissconnected: 201
+W (532112) wifi: 断开或未连上，正在进行第 3 次自动重连...
+W (532862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (532862) MQTT_Class: 当前信息: {"light_value": 828}
+E (533812) led: 开灯
+W (533862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (533862) MQTT_Class: 当前信息: {"light_value": 745}
+E (533932) wifi: WiFi 断开了...
+E (534532) wifi: ⚠️ diss dissconnected: 201
+W (534532) wifi: 断开或未连上，正在进行第 4 次自动重连...
+I (534542) wifi:new:<6,0>, old:<6,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0
+I (534542) wifi:state: init -> auth (0xb0)
+I (534562) wifi:state: auth -> assoc (0x0)
+I (534582) wifi:state: assoc -> run (0x10)
+I (534662) wifi:connected with Katatumuri, aid = 1, channel 6, BW20, bssid = e6:70:e5:ae:a0:40
+I (534662) wifi:security: WPA2-PSK, phy: bgn, rssi: -49, cipher(pairwise:0x3, group:0x3), pmf:0
+I (534672) wifi:pm start, type: 1
+
+I (534692) wifi:AP's beacon interval = 102400 us, DTIM period = 1
+W (534862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (534862) MQTT_Class: 当前信息: {"light_value": 735}
+W (535862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (535862) MQTT_Class: 当前信息: {"light_value": 714}
+I (535932) esp_netif_handlers: sta ip: 172.20.10.2, mask: 255.255.255.240, gw: 172.20.10.1
+I (535932) wifi: IP : 172.20.10.2
+E (536142) MQTT_Class: MQTT 断开了...但是wifi是好的
+W (536862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (536862) MQTT_Class: 当前信息: {"light_value": 744}
+E (537152) MQTT_Class: MQTT 断开了...但是wifi是好的
+W (537862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (537862) MQTT_Class: 当前信息: {"light_value": 778}
+E (538162) MQTT_Class: MQTT 断开了...但是wifi是好的
+W (538862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (538862) MQTT_Class: 当前信息: {"light_value": 832}
+E (539172) MQTT_Class: MQTT 断开了...但是wifi是好的
+W (539862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (539862) MQTT_Class: 当前信息: {"light_value": 847}
+E (540182) MQTT_Class: MQTT 断开了...但是wifi是好的
+W (540862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (540862) MQTT_Class: 当前信息: {"light_value": 859}
+E (541192) MQTT_Class: MQTT 断开了...但是wifi是好的
+W (541862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (541862) MQTT_Class: 当前信息: {"light_value": 883}
+E (542202) MQTT_Class: MQTT 断开了...但是wifi是好的
+I (542332) MQTT_Class: Other event id:7
+I (542352) wifi:<ba-add>idx:0 (ifx:0, e6:70:e5:ae:a0:40), tid:0, ssn:2, winSize:64
+W (542862) MQTT_Class: MQTT 客户端未准备好,无法发布mqtt消息 可能是 wifi或mqtt没链接
+I (542862) MQTT_Class: 当前信息: {"light_value": 912}
+E (543212) MQTT_Class: MQTT 断开了...但是wifi是好的
+I (543442) MQTT_Class: MQTT_EVENT_CONNECTED
+I (543862) MQTT_Class: 发布 MQTT 消息: {"light_value": 956}
+I (544862) MQTT_Class: 发布 MQTT 消息: {"light_value": 998}
+E (545312) led: 关灯
+I (545862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1042}
+I (546862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1053}
+I (547862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1037}
+I (548862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1030}
+I (549862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1027}
+I (550862) MQTT_Class: 发布 MQTT 消息: {"light_value": 1026}
+I (551862) MQTT_Class: 发布 MQTT 消息: {"light_value": 980}
+I (552862) MQTT_Class: 发布 MQTT 消息: {"light_value": 935}
+I (553862) MQTT_Class: 发布 MQTT 消息: {"light_value": 879}
+I (554862) MQTT_Class: 发布 MQTT 消息: {"light_value": 833}
+I (555862) MQTT_Class: 发布 MQTT 消息: {"light_value": 767}

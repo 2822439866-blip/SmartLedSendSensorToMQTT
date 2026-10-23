@@ -1,0 +1,16 @@
+由于在wifiManager设置了wifi重连机制【检测到wifi链接失败 或 系统启动时 握手 若失败 则重连五次 若依旧失败 则不再进行重连】
+if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START) {//硬件准备好了
+        esp_wifi_connect(); 
+    }else if(event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED){
+        wifi_event_sta_disconnected_t* event = (wifi_event_sta_disconnected_t*) event_data;
+        ESP_LOGE(wifi_tag, " diss dissconnected: %d", event->reason);
+        // 更新系统状态 呼吸灯会感知到这个状态并改变自己的行为
+        xEventGroupClearBits(wifi->sys_state_group, SYS_STATE_BIT_WIFI_CONNECTED); // 更新系统状态
+        if (wifi->retry_num < MAX_RETRY) {
+            esp_wifi_connect(); // 没超过 5 次，继续尝试重连
+            wifi->retry_num++;
+            ESP_LOGW(wifi_tag, "断开或未连上，正在进行第 %d 次自动重连...",wifi->retry_num);
+        } else {
+            // 超过 5 次都连不上，彻底放弃，通知正在死等的主程序    WIFI_FAIL_BIT
+            xEventGroupSetBits(wifi->wifi_event_group, WIFI_FAIL_BIT);//点灯 通知在connect函数死等的程序
+        }
